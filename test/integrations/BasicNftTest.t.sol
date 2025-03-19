@@ -10,8 +10,7 @@ contract BasicNftTest is Test {
     DeployBasicNft public deployer;
     BasicNft public basicNft;
     address public USER = makeAddr("user");
-    string public constant SHIBA =
-        "ipfs://QmQtsjmSZ5DJTZLWceqR45hsJJPxXjM45aa5aiziAcufao";
+    string public constant SHIBA = "ipfs://QmQtsjmSZ5DJTZLWceqR45hsJJPxXjM45aa5aiziAcufao";
 
     function setUp() public {
         deployer = new DeployBasicNft();
@@ -21,10 +20,7 @@ contract BasicNftTest is Test {
     function testNameIsCorrect() public view {
         string memory expectedName = "Dogie";
         string memory actualName = basicNft.name();
-        assert(
-            keccak256(abi.encodePacked(expectedName)) ==
-                keccak256(abi.encodePacked(actualName))
-        );
+        assert(keccak256(abi.encodePacked(expectedName)) == keccak256(abi.encodePacked(actualName)));
     }
 
     function testCanMintAndHaveABalance() public {
@@ -32,9 +28,6 @@ contract BasicNftTest is Test {
         basicNft.mintNft(SHIBA);
 
         assert(basicNft.balanceOf(USER) == 1);
-        assert(
-            keccak256(abi.encodePacked(SHIBA)) ==
-                keccak256(abi.encodePacked(basicNft.tokenURI(0)))
-        );
+        assert(keccak256(abi.encodePacked(SHIBA)) == keccak256(abi.encodePacked(basicNft.tokenURI(0))));
     }
 }
